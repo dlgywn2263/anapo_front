@@ -1,3 +1,4 @@
+// app/main/reservationmed/page.jsx 에서 사용 되는 임시 데이터
 const hospitalData = [
   {
     id: "1",

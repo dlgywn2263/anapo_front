@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Eye, Pencil, Trash2, Search, UserPlus } from "lucide-react";
 
-const PatientManagement = () => {
+const Patient = () => {
   const [patients, setPatients] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -206,4 +206,4 @@ const PatientManagement = () => {
   );
 };
 
-export default PatientManagement;
+export default Patient;

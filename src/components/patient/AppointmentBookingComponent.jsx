@@ -1,3 +1,5 @@
+// 병원 찾기 페이지 안에서 사용하는 예약 컴포넌트
+
 "use client";
 import React, { useState } from "react";
 import StepOne from "./StepOne";

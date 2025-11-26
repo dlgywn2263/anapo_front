@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Search, Eye, Download } from "lucide-react";
 
-const medicalrecord = () => {
+const Medicalrecord = () => {
   const [records, setRecords] = useState([]);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("전체 상태");
@@ -184,4 +184,4 @@ const medicalrecord = () => {
   );
 };
 
-export default medicalrecord;
+export default Medicalrecord;

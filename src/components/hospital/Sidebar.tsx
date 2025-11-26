@@ -46,17 +46,17 @@ export default function Sidebar() {
     {
       name: "공지사항",
       icon: <FileText size={20} />,
-      href: "/userhospital/",
+      href: "/userhospital/notice",
     },
     {
       name: "환자 문의",
       icon: <MessageSquare size={20} />,
-      href: "/userhospital/",
+      href: "/userhospital/inquiry",
     },
     {
       name: "통계 및 리포트",
       icon: <FileBarChart2 size={20} />,
-      href: "/userhospital/",
+      href: "/userhospital/reports",
     },
   ];
 

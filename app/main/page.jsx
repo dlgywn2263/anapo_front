@@ -1,11 +1,12 @@
 import MainBanner from "@/MainBanner";
 import MainOffer from "@/MainOffer";
 import { MessageCircle } from "lucide-react";
+import FindHospitalSection from "@/ui/FindHospitalSection";
 const Page = () => {
   return (
     <section className="relative">
       <MainBanner />
-      <MainOffer />
+      <FindHospitalSection />
 
       {/* <MessageCircle
         size={"70px"}

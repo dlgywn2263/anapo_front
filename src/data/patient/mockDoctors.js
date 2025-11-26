@@ -1,3 +1,5 @@
+// AppointBookingComponent.jsx에서 의사 선택 필터링에서 사용되는 임시 데이터
+
 const mockDoctors = [
   {
     id: "1",

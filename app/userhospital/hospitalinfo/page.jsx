@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Phone, Mail, MapPin, Clock, Edit } from "lucide-react";
 
-const hospitalinfo = () => {
+const Hospitalinfo = () => {
   const [info, setInfo] = useState(null);
 
   /*  
@@ -181,4 +181,4 @@ const hospitalinfo = () => {
   );
 };
 
-export default hospitalinfo;
+export default Hospitalinfo;
