@@ -4,31 +4,13 @@ import { Phone, Mail, MapPin, Clock, Edit, Save, X } from "lucide-react";
 
 const Hospitalinfo = () => {
   const [info, setInfo] = useState(null);
-
-  // ⭐ 편집 모드 여부
   const [isEditing, setIsEditing] = useState(false);
-
-  // ⭐ 편집용 임시 데이터
   const [editData, setEditData] = useState(null);
-
-  // ⭐ 과목 추가용 임시 필드
   const [newDept, setNewDept] = useState({
     name: "",
     description: "",
     doctors: 0,
   });
-
-  /*  
-    📌 Spring 백엔드 연동 예정:
-    useEffect(() => {
-      fetch("/api/hospital/info")
-        .then(res => res.json())
-        .then(data => {
-          setInfo(data);
-          setEditData(data);
-        });
-    }, []);
-  */
 
   useEffect(() => {
     const mockData = {
@@ -36,10 +18,6 @@ const Hospitalinfo = () => {
       phone: "02-1234-5678",
       email: "info@medicare.com",
       address: "서울특별시 강남구 테헤란로 123",
-      intro:
-        "최첨단 의료 시설과 우수한 의료진으로 환자 중심의 진료를 제공하는 종합병원입니다.",
-      founded: "1985년",
-      beds: "500개",
       hours: {
         월요일: "09:00 - 18:00",
         화요일: "09:00 - 18:00",
@@ -57,13 +35,6 @@ const Hospitalinfo = () => {
         },
         { name: "외과", description: "외과 수술 및 응급 처치", doctors: 6 },
         { name: "소아과", description: "소아 청소년 전문 진료", doctors: 5 },
-        {
-          name: "정형외과",
-          description: "근골격계 질환 및 외상 치료",
-          doctors: 4,
-        },
-        { name: "피부과", description: "피부 질환 및 미용 치료", doctors: 3 },
-        { name: "안과", description: "눈 질환 및 시력 교정", doctors: 3 },
       ],
     };
 
@@ -73,22 +44,11 @@ const Hospitalinfo = () => {
 
   if (!info || !editData) return <div>로딩 중...</div>;
 
-  // ⭐ 저장
   const handleSave = () => {
     setInfo(editData);
     setIsEditing(false);
-
-    /*
-      📌 백엔드 저장 PUT 요청
-      fetch("/api/hospital/info", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editData),
-      });
-    */
   };
 
-  // ⭐ 과목 추가
   const addDepartment = () => {
     if (!newDept.name.trim()) return;
 
@@ -100,7 +60,6 @@ const Hospitalinfo = () => {
     setNewDept({ name: "", description: "", doctors: 0 });
   };
 
-  // ⭐ 과목 삭제
   const deleteDepartment = (idx) => {
     setEditData({
       ...editData,
@@ -108,7 +67,6 @@ const Hospitalinfo = () => {
     });
   };
 
-  // ⭐ 과목 수정
   const updateDepartment = (idx, field, value) => {
     const updated = [...editData.departments];
     updated[idx][field] = value;
@@ -170,9 +128,8 @@ const Hospitalinfo = () => {
               )}
             </div>
 
-            {/* 전화번호/이메일 */}
+            {/* 전화번호 / 이메일 */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* 전화 */}
               <div>
                 <p className="text-gray-500 text-sm">전화번호</p>
                 {isEditing ? (
@@ -191,7 +148,6 @@ const Hospitalinfo = () => {
                 )}
               </div>
 
-              {/* 이메일 */}
               <div>
                 <p className="text-gray-500 text-sm">이메일</p>
                 {isEditing ? (
@@ -228,57 +184,6 @@ const Hospitalinfo = () => {
                   {info.address}
                 </div>
               )}
-            </div>
-
-            {/* 소개 */}
-            <div>
-              <p className="text-gray-500 text-sm">병원 소개</p>
-              {isEditing ? (
-                <textarea
-                  className="w-full border rounded-lg p-3 h-24 mt-1 resize-none"
-                  value={editData.intro}
-                  onChange={(e) =>
-                    setEditData({ ...editData, intro: e.target.value })
-                  }
-                />
-              ) : (
-                <p className="mt-1">{info.intro}</p>
-              )}
-            </div>
-
-            {/* 설립/병상 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* 설립 */}
-              <div>
-                <p className="text-gray-500 text-sm">설립년도</p>
-                {isEditing ? (
-                  <input
-                    className="w-full border rounded-lg p-2 mt-1"
-                    value={editData.founded}
-                    onChange={(e) =>
-                      setEditData({ ...editData, founded: e.target.value })
-                    }
-                  />
-                ) : (
-                  <p className="mt-1">{info.founded}</p>
-                )}
-              </div>
-
-              {/* 병상 */}
-              <div>
-                <p className="text-gray-500 text-sm">병상 수</p>
-                {isEditing ? (
-                  <input
-                    className="w-full border rounded-lg p-2 mt-1"
-                    value={editData.beds}
-                    onChange={(e) =>
-                      setEditData({ ...editData, beds: e.target.value })
-                    }
-                  />
-                ) : (
-                  <p className="mt-1">{info.beds}</p>
-                )}
-              </div>
             </div>
           </div>
         </div>
@@ -331,7 +236,6 @@ const Hospitalinfo = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* 기존 과목 리스트 */}
           {editData.departments.map((d, idx) => (
             <div
               key={idx}
@@ -346,7 +250,6 @@ const Hospitalinfo = () => {
                 </button>
               )}
 
-              {/* 이름 */}
               {isEditing ? (
                 <input
                   className="w-full border rounded-lg p-1 font-medium"
@@ -359,7 +262,6 @@ const Hospitalinfo = () => {
                 <p className="font-medium">{d.name}</p>
               )}
 
-              {/* 의사 수 */}
               {isEditing ? (
                 <input
                   type="number"
@@ -373,7 +275,6 @@ const Hospitalinfo = () => {
                 <span className="text-gray-500 text-sm">{d.doctors}명</span>
               )}
 
-              {/* 설명 */}
               {isEditing ? (
                 <textarea
                   className="border rounded-lg p-2 mt-2 w-full"
@@ -387,43 +288,6 @@ const Hospitalinfo = () => {
               )}
             </div>
           ))}
-
-          {/* ⭐ 새 과목 추가 입력창 */}
-          {isEditing && (
-            <div className="border rounded-xl p-4 bg-gray-50">
-              <input
-                className="w-full border rounded-lg p-2 mb-2"
-                placeholder="과목명 입력"
-                value={newDept.name}
-                onChange={(e) =>
-                  setNewDept({ ...newDept, name: e.target.value })
-                }
-              />
-              <input
-                className="w-full border rounded-lg p-2 mb-2"
-                placeholder="의사 수"
-                type="number"
-                value={newDept.doctors}
-                onChange={(e) =>
-                  setNewDept({ ...newDept, doctors: Number(e.target.value) })
-                }
-              />
-              <textarea
-                className="w-full border rounded-lg p-2 mb-2"
-                placeholder="설명"
-                value={newDept.description}
-                onChange={(e) =>
-                  setNewDept({ ...newDept, description: e.target.value })
-                }
-              />
-              <button
-                onClick={addDepartment}
-                className="bg-blue-600 text-white w-full rounded-lg py-2 hover:bg-blue-700"
-              >
-                추가
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>

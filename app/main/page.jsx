@@ -1,7 +1,7 @@
 import MainBanner from "@/MainBanner";
 import MainHotPosts from "@/MainHotPost";
 import MainNoticeSection from "@/MainNoticeSection";
-import MainOffer from "@/MainOffer";
+
 import MainHotPost from "@/MainHotPost";
 import { MessageCircle } from "lucide-react";
 

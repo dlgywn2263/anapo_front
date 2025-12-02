@@ -3,6 +3,7 @@
 import { Bell, CalendarDays, Star, TrendingUp, Users } from "lucide-react";
 import { notices } from "@/data/patient/notices";
 import { ranking } from "@/data/patient/ranking";
+
 export default function MainNoticeSection() {
   // ----------------------------
   // 📌 1. 나중에 Spring / Node API 연동할 부분
@@ -21,7 +22,7 @@ export default function MainNoticeSection() {
 
   return (
     <section className=" h-min-screen w-full bg-gray-50 flex justify-center pt-18 ">
-      <div className="w-full max-w-7xl flex gap-8">
+      <div className="w-full max-w-8xl flex gap-8 p-16">
         {/* ---------------------- */}
         {/* 📌 왼쪽 - 공지사항 */}
         {/* ---------------------- */}
@@ -42,7 +43,7 @@ export default function MainNoticeSection() {
                 <th className="py-3">번호</th>
                 <th className="py-3">병원</th>
                 <th className="py-3">구분</th>
-                <th className="py-3">제목</th>
+                <th className="py-3 pr-15">제목</th>
                 <th className="py-3">작성일</th>
                 <th className="py-3">조회</th>
               </tr>
@@ -52,6 +53,7 @@ export default function MainNoticeSection() {
               {notices.map((n) => (
                 <tr key={n.id} className="border-b text-sm hover:bg-gray-50">
                   <td className="py-3">{n.id}</td>
+
                   <td className="py-3 text-blue-600 font-medium">
                     {n.hospital}
                   </td>
@@ -75,9 +77,12 @@ export default function MainNoticeSection() {
                     )}
                   </td>
 
-                  <td className="py-3 flex items-center justify-center gap-1">
-                    <CalendarDays size={16} className="text-gray-500" />
-                    {n.date}
+                  {/*  ✅ 수정된 부분 — 작성일(td) 정렬 문제 해결 */}
+                  <td className="py-3 text-center">
+                    <div className="inline-flex items-center gap-1 justify-center">
+                      <CalendarDays size={16} className="text-gray-500" />
+                      {n.date}
+                    </div>
                   </td>
 
                   <td className="py-3">{n.views.toLocaleString()}</td>
